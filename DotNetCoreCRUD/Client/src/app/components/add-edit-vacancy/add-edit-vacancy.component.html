@@ -1,0 +1,28 @@
+<p-toast></p-toast>
+<p-card>
+
+  <h3 *ngIf="!IsAddPage">Edit Vacancy</h3>
+  <h3 *ngIf="IsAddPage">Add Vacancy</h3>
+<form [formGroup]="appForm" (ngSubmit)="onSubmit()" class="input-group mb-3" >           
+  <div class="row mb-3 ">
+    <label  class="form-label">Name: </label>
+    <input  type="text" formControlName="name" class="form-control">
+
+    <label  class="form-label">Responsibilities: </label>
+    <input  type="text" formControlName="responsibilities" class="form-control">
+    
+    <label  class="form-label">Skills: </label>
+    <input  type="text" formControlName="skills" class="form-control">
+    
+    <label class="form-label">jobCategory: </label>
+    <input  type="text" formControlName="jobCategory" class="form-control">
+    <div class="mb-3 mt-3">
+    <button pButton pRipple 
+    label="Submit" type="submit"
+    class="  p-button-success ">
+  
+  </button>
+  </div>
+</div>
+  </form>
+</p-card>

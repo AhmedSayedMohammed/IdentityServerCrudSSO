@@ -1,0 +1,90 @@
+<p-toast></p-toast>
+<p-card>
+  <button pButton pRipple label="Add Vacncy" type="submit"
+  class="  p-button-success "
+  [routerLink]="['form/vacancy/add']">
+  </button>
+</p-card>
+<p-card>
+  <div class="shadow-1">
+
+      <ng-template pTemplate="left">
+      </ng-template>
+
+     
+    <p-table
+      #dt
+      [value]="vacancies"
+      [rows]="rows"
+      responsiveLayout="scroll"
+      dataKey="id"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [pSelectableRow]="false"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+          <h5 class="m-0">vacancies</h5>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="vacancy.name">
+            Name <p-sortIcon field="vacancy.name" aria-required="true"></p-sortIcon>
+          </th>
+          <th pSortableColumn="vacancy.skills">
+            Skills
+            <p-sortIcon field="vacancy.skills"></p-sortIcon>
+          </th>
+          <th pSortableColumn="vacancy.responsibilities">
+            Responsibilities
+            <p-sortIcon
+              field="vacancy.responsibilities"
+            ></p-sortIcon>
+          </th>
+          <th pSortableColumn="vacancy.jobCategory">
+            JobCategory
+            <p-sortIcon field="vacancy.jobCategory"></p-sortIcon>
+          </th>
+ 
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-vacancy>
+        <tr>
+          <td>{{ vacancy.name }}</td>
+          <td>  {{ vacancy.skills }}</td>
+          <td>{{ vacancy.responsibilities }}</td>
+          <td>{{ vacancy.jobCategory }}</td>
+     
+          <button 
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success mt-1 mr-1"
+          [routerLink]="['form/vacancy/edit',vacancy.id]" [state]="vacancy">
+          </button>
+          <button 
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-danger mt-1 "
+          (click)="deletevacancy(vacancy)"
+          >
+          </button>
+        
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="d-flex align-items-center justify-content-center">
+              <p-button type="button" icon="pi pi-chevron-left" (click)="previous()" [disabled]="isFirst()" styleClass="p-button-text"></p-button>
+              <h4>{{pageNumber}}</h4>
+              <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLast()" styleClass="p-button-text"></p-button>
+        
+          In total there are {{ paginateResult.count }} vacancies.
+          
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+</p-card>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

@@ -1,0 +1,21 @@
+<p-toast></p-toast>
+<section class="h-screen  grid grid-nogutter justify-content-center xl:justify-content-start">
+  <div class="login col-8   xl:col-3 pb-5 px-0   xl:pl-7 flex  flex-column justify-content-center align-items-center">
+    <form [formGroup]="loginform" class="input-group mb-3 mr-5" >
+              
+      <div class="mb-3 mt-3 ml-5">
+
+          <label for="name" class="form-label">Email: </label>
+          <input id="name" type="text" formControlName="email" class="form-control mt-1" required>
+          <label for="email" class="form-label">Password: </label>
+          <input id="email" type="password" formControlName="password" class="form-control mt-1" required>
+          <button
+          pButton
+          pRipple
+          (click)="login(loginform)"
+          type="submit" class="btn btn-primary mt-3">Login</button>
+        </div>
+      
+    </form>
+  </div>
+</section>
